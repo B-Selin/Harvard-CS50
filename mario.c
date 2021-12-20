@@ -47,12 +47,8 @@ for (int x = 0; x < i; x++)
 	{
 		printf("#");
 
-	}
 
-		for (int h = x + 1; h < i; h++)
-	{
-		printf(" ");
-
+// I had to delete the second round of spaces here, apparently thats the reason I get the error, thats not required in the test
 	}
 
 	printf("\n");
