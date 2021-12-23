@@ -62,3 +62,5 @@ int main(void)
 
 
 //this is not as clean as I want, I may come back after I finish the credit part
+//I checked the course discussion page and apparently a lot of people did it this way. There should be a better way. #FutureSelinsProblem
+
