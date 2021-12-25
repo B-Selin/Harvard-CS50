@@ -3,12 +3,6 @@
 //MasterCard, or Visa card number, per the definitions of each’s format herein.
 //So that we can automate some tests of your code, we ask that
 //your program’s last line of output be AMEX\n or MASTERCARD\n or VISA\n or INVALID\n
-#include <cs50.h>
-#include <stdio.h>
-#include <math.h>
-#include <string.h>
-
-
 
 int main(void)
 {
