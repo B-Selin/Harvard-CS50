@@ -19,10 +19,89 @@ int main(void)
     while (12 >  l || l > 17);
 
 
-
 //calculate checksum
+//idea here, try to add eevery other number using a loop?
+// lets give another int the value of card number
+// j is equal to i, oddsum starts at 0
 
+    long j = i;
+    int oddSum = 0;
+    int remainder1;
+    int remainder0;
+    while (j != 0)
+    {
+        remainder1 = 2 * ((j % 100) / 10);
+        remainder0 = remainder1 % 10 + round(remainder1 / 10);
+        oddSum = oddSum + remainder0 ;
+        j = j / 100;
+    }
+    //sum the rest of the digits
+    long k = i;
+    int evenSum = 0;
+    int remainder2;
+    while (k != 0)
+    {
+        remainder2 = k % 10;
+        evenSum = evenSum + remainder2;
+        k = k / 100;
+    }
+    int checksum = oddSum + evenSum;
 //check for card length and starting digits
+    if (checksum % 10 == 0)
+    {
+        if ( l == 15)
+        {
+            if ((i / 10000000000000) == 34 || (i / 10000000000000) == 37)
+            {
+                printf("AMEX\n");
+            }
+            else
+            {
+                printf("INVALID\n");
+            }
+        }
+        else if ( l == 16)
+        {
+            if ((i/1000000000000000) == 4 || (i/1000000000000) == 4)
+            {
+                printf("VISA\n");
+            }
+            else
+            {
+                printf("INVALID\n");
+            }
+        }
+        else if ( l == 13 || l == 16)
+        {
+            if (55 == (i / 100000000000000) || 54 == (i / 100000000000000) || 53 == (i / 100000000000000) || 51 == (i / 100000000000000) || 52 == (i / 100000000000000))
+            {
+                printf("MASTERCARD\n");
+            }
+            else if (55 == (i / 1000000000000) || 54 == (i / 1000000000000) || 53 == (i / 1000000000000) || 51 == (i / 1000000000000) || 52 == (i / 1000000000000))
+            {
+                printf("MASTERCARD\n");
+            }
+            else
+            {
+                printf("INVALID\n");
+            }
+        }
+        else if( 13 > l)
+        {
+            printf("INVALID\n");
+        }
+        else if( 17 < l)
+        {
+            printf("INVALID\n");
+        }
 
-//print Amex / mastercard/ Cisa/ invalid
+    }
+    else
+    {
+        printf("INVALID\n");
+    }
+
+// There is problem, doesnt pass the tests
+
+//print Amex 15 digit/ mastercard 16 digit/ visa 13 16/ invalid
 }
