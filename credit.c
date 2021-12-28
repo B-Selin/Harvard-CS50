@@ -73,7 +73,7 @@ int main(void)
                 printf("INVALID\n");
             }
         }
-        //I had a problem with length 16, cause it both works with master and visa, and since visa was before master, it kept returning invalid
+        //I had a problem with length 16, cause it both works with master and visa, and since visa was before master, mastercard numbers kept returning invalid
         // so I combined master and visa here, instead of checking visa and master seperately, I check them under length 16
         else if ( l == 16)
         {
