@@ -4,6 +4,8 @@
 //So that we can automate some tests of your code, we ask that
 //your program’s last line of output be AMEX\n or MASTERCARD\n or VISA\n or INVALID\n
 
+
+
 int main(void)
 {
 // Ask for credit card number, length shooul be between 13-16 char
@@ -16,7 +18,7 @@ int main(void)
         sprintf(myCard, "%ld", i);
         l = sprintf(myCard, "%ld", i);
     }
-    while (12 >  l || l > 17);
+    while (0 >  l || l > 17);
 
 
 //calculate checksum
@@ -60,9 +62,9 @@ int main(void)
                 printf("INVALID\n");
             }
         }
-        else if ( l == 16)
+        else if ( l == 13)
         {
-            if ((i/1000000000000000) == 4 || (i/1000000000000) == 4)
+            if ( (i/1000000000000) == 4)
             {
                 printf("VISA\n");
             }
@@ -71,15 +73,18 @@ int main(void)
                 printf("INVALID\n");
             }
         }
-        else if ( l == 13 || l == 16)
+        //I had a problem with length 16, cause it both works with master and visa, and since visa was before master, it kept returning invalid
+        // so I combined master and visa here, instead of checking visa and master seperately, I check them under length 16
+        else if ( l == 16)
         {
             if (55 == (i / 100000000000000) || 54 == (i / 100000000000000) || 53 == (i / 100000000000000) || 51 == (i / 100000000000000) || 52 == (i / 100000000000000))
             {
                 printf("MASTERCARD\n");
             }
-            else if (55 == (i / 1000000000000) || 54 == (i / 1000000000000) || 53 == (i / 1000000000000) || 51 == (i / 1000000000000) || 52 == (i / 1000000000000))
+
+            else if ((i/1000000000000000) == 4 )
             {
-                printf("MASTERCARD\n");
+                printf("VISA\n");
             }
             else
             {
@@ -101,7 +106,6 @@ int main(void)
         printf("INVALID\n");
     }
 
-// There is problem, doesnt pass the tests
 
 //print Amex 15 digit/ mastercard 16 digit/ visa 13 16/ invalid
 }
