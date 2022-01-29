@@ -142,16 +142,17 @@ void add_pairs(void)
         {
             if (preferences[i][j] > preferences[j][i]) //if rank of i'th preferance is higher than jth:
             {
-                pairs[i].winner = i; // line 24, the identifier is callaed "pairs" not pair
+                pairs[pair_count].winner = i; // line 24, the identifier is callaed "pairs" not pair
                 //pair [i], dunno if i should be i? again we start counting from 0? Wait they mentioned something about this. "The pairs should thus all be stored between pairs[0] and pairs[pair_count - 1], inclusive)"
-                pairs[i].loser = j;
+                // did pair_count started from 0? Yes check line 68. pair_count = 0. But I don't think I have the abiillty to limit this count-1, the loop does not allowing part itself?
+                pairs[pair_count].loser = j;
                 // update global var pair_count to the total numner of pairs
                 pair_count ++;
             }
             else if (preferences[i][j] < preferences[j][i])
             {
-                pairs[i].winner = j;
-                pairs[i].loser = i;
+                pairs[pair_count].winner = j;
+                pairs[pair_count].loser = i;
                 pair_count ++;
             }
         }
