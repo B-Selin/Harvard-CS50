@@ -1,5 +1,6 @@
 #include <cs50.h>
 #include <stdio.h>
+#include <string.h>
 
 // Max number of candidates
 #define MAX 9
@@ -21,6 +22,7 @@ pair;
 // Array of candidates
 string candidates[MAX];
 pair pairs[MAX * (MAX - 1) / 2]; // S calculation of C(MAX/2): Max!/(2!(Max - 2)!)
+// pairs is the aaray of all pairs where one candidate is preferred above another
 
 int pair_count;
 int candidate_count;
@@ -99,10 +101,19 @@ int main(int argc, string argv[])
 // Am I dumb? I just realised int main does all the shit and you can include functions down below. All of my 7 brain cells feel so dumb rn
 
 // Update ranks given a new vote
-// I can assume no two candidates have the same name
+// I can assume no two candidates have the same name, 3 inputs.
 bool vote(int rank, string name, int ranks[])
 {
     // TODO
+    for (int i = 0; i < candidate_count; i++) // iterate through candidates
+    {
+        if (strcmp(candidates[i], name) == 0) //compare name.
+        {
+            ranks[rank] = i; //added "choice" at first because I wanted this to be a dfferent word than rank or prefe or candidate, it got confusing.
+            //BUT (butt) apparently I'm not suppose to do write just anything I want, it has to be a declared identifier. TIL :p
+            return true;
+        }
+    }
     return false;
 }
 
