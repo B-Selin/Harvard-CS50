@@ -135,6 +135,27 @@ void record_preferences(int ranks[]) // this is how it goes, voters give a rank 
 void add_pairs(void)
 {
     // TODO
+    //The function should add all pairs of candidates where one candidate is preferred to the pairs array. A pair of candidates who are tied (one is not preferred over the other) should not be added to the array.
+    for (int i = 0; i < candidate_count; i++) // iterate through every voter? I guess it has to be voters this time. But it doesnt make sense cause preferences accepts two integer from candidates, not one from voters and one from candidates
+    {
+        for (int j = i + 1; j < candidate_count; j++) // iterate through every next candidate, like we do in substitution
+        {
+            if (preferences[i][j] > preferences[j][i]) //if rank of i'th preferance is higher than jth:
+            {
+                pairs[i].winner = i; // line 24, the identifier is callaed "pairs" not pair
+                //pair [i], dunno if i should be i? again we start counting from 0? Wait they mentioned something about this. "The pairs should thus all be stored between pairs[0] and pairs[pair_count - 1], inclusive)"
+                pairs[i].loser = j;
+                // update global var pair_count to the total numner of pairs
+                pair_count ++;
+            }
+            else if (preferences[i][j] < preferences[j][i])
+            {
+                pairs[i].winner = j;
+                pairs[i].loser = i;
+                pair_count ++;
+            }
+        }
+    }
     return;
 }
 
