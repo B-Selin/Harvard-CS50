@@ -118,9 +118,16 @@ bool vote(int rank, string name, int ranks[])
 }
 
 // Update preferences given one voter's ranks
-void record_preferences(int ranks[])
+void record_preferences(int ranks[]) // this is how it goes, voters give a rank to each candidate, so they will be asked just ranks, not candidate order and ranks, just ranks, as in 3-2-4-1
 {
     // TODO
+    for (int i = 0; i < candidate_count; i++) // iterate through every voter? I guess it has to be voters this time. But it doesnt make sense cause preferences accepts two integer from candidates, not one from voters and one from candidates
+    {
+        for (int j = i + 1; j < candidate_count; j++) // iterate through every next candidate, like we do in substitution
+        {
+            preferences[ranks[i]] [ranks[j]] ++; // A huge "ooooh" moment, I got stuck on how to include an expression, like, should I compare int rank[i] and rank[j] etc. I should include them within the brackets. DONT FORGET to put two brackets like this:  preferences[ranks[i]] [ranks[j]], not like this preferences [ranks[i], ranks[j]]
+        }
+    }
     return;
 }
 
