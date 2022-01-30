@@ -164,6 +164,15 @@ void add_pairs(void)
 void sort_pairs(void)
 {
     // TODO
+    for (int i = 0; i < pair_count-1; i++) // I came here to count pair and to fuck bitches, and I'm done counting pairs
+    {
+        for (int j = i + 1; j < pair_count; j++) // I had the preferences preferences[i][j] > preferences[j][i] sorted in here, buuut I'm drunk and I dunno how to sort pairs.
+        //The function should sort the pairs array in decreasing order of strength of victory, where strength of victory is defined to be the number of voters who prefer the preferred candidate.
+        // in pairs, we have a winner and a loser i and j, can we declare a strength equal to i - j and that could be the strength of i?
+        // How can I sort the strength of i'th candidate
+
+
+    }
     return;
 }
 
