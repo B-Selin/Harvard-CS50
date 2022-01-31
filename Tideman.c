@@ -1,6 +1,7 @@
 #include <cs50.h>
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 // Max number of candidates
 #define MAX 9
@@ -101,7 +102,7 @@ int main(int argc, string argv[])
 // Am I dumb? I just realised int main does all the shit and you can include functions down below. All of my 7 brain cells feel so dumb rn
 
 // Update ranks given a new vote
-// I can assume no two candidates have the same name, 3 inputs.
+// S I can assume no two candidates have the same name, 3 inputs.
 bool vote(int rank, string name, int ranks[])
 {
     // TODO
@@ -118,14 +119,14 @@ bool vote(int rank, string name, int ranks[])
 }
 
 // Update preferences given one voter's ranks
-void record_preferences(int ranks[]) // this is how it goes, voters give a rank to each candidate, so they will be asked just ranks, not candidate order and ranks, just ranks, as in 3-2-4-1
+void record_preferences(int ranks[]) // this is how it goes, voters give a rank to each candidate, so they will be asked just ranks, not candidate order and ranks, just ranks, as in [3-2-4-1]
 {
     // TODO
     for (int i = 0; i < candidate_count; i++) // iterate through every voter? I guess it has to be voters this time. But it doesnt make sense cause preferences accepts two integer from candidates, not one from voters and one from candidates
     {
         for (int j = i + 1; j < candidate_count; j++) // iterate through every next candidate, like we do in substitution
         {
-            preferences[ranks[i]] [ranks[j]] ++; // A huge "ooooh" moment, I got stuck on how to include an expression, like, should I compare int rank[i] and rank[j] etc. I should include them within the brackets. DONT FORGET to put two brackets like this:  preferences[ranks[i]] [ranks[j]], not like this preferences [ranks[i], ranks[j]]
+            preferences[ranks[i]] [ranks[j]] ++; // A huge "ooooh" moment, I got stuck on how to include an expression, like, should I compare int rank[i] and rank[j] etc. I should include them within the brackets. DONT FORGET to put two brackets like this:  preferences"[ranks[i]] [ranks[j]]", not like this preferences "[ranks[i], ranks[j]]"
         }
     }
     return;
@@ -159,6 +160,47 @@ void add_pairs(void)
     }
     return;
 }
+
+// NOTES TO WHAT I GOT UP TILL NOW (cause sort pairs is a pain in the ass)
+// 3 voters, 4 candidates after the basic validation checks, every voter ranks the candidates
+// cand: a-0 b-1 c-2 d-3
+// 1st [0, 2, 1, 3]
+// 2st [0, 3, 1, 2]
+// 3st [2, 1, 3, 0]
+
+// preferences (left over top cand)
+//   a b c d
+// a 0 2 2 2
+// b 1 0 1 2
+// c 1 2 0 2
+// d 1 1 1 0
+
+// record preferences in pairs
+// (0, 1) a over b
+// (0, 2) a over c
+// (0, 3) a over d
+// (1, 3) b over d
+// (1, 2) b over c
+// (2, 3) c over d
+
+// Winning matrix is (either win or lose) (and again, left cand over top cand)
+//  a b c d
+//a 0 1 1 1 (candidate A wins)
+//b 0 0 0 1
+//c 0 1 0 1
+//d 0 0 0 0
+
+
+// 1st voters preferences are p1 [0, 2] p2[0, 1] p3 [0, 3] p4 [2, 1] p5[2, 3] p6 [1, 3]
+// preferences[i][j] is number of voters who prefer i over j
+// pairs include winner and loser information p1[loser, winner] p4 [winner, loser] etc
+
+// strength could be calculated by subtracting the ranks? For ex, 4th candidate is 1st voters higher ranked candidate, and its overall strength is [(3-0), (3-2), (3-1)] = 6 But for the second voter, its overall strength is [2, -1, 1] = 2
+
+//
+
+
+
 
 // Sort pairs in decreasing order by strength of victory
 void sort_pairs(void)
