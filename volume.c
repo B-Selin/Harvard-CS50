@@ -18,14 +18,14 @@ int main(int argc, char *argv[])
     // fopen: Opens the file whose name is specified in the parameter filename and associates it with a stream that can be identified in future operations by the FILE pointer returned. The operations that are allowed on the stream and how these are performed are defined by the mode parameter.
 
     // Open files and determine scaling factor
-    FILE *input = fopen(argv[1], "r");
+    FILE *input = fopen(argv[1], "r"); // File * ile dosya tanımlaması yapıyoruz. "r" olması read için açmak. FILE *filepointer = fopen("filename", "mode")
     if (input == NULL)
     {
         printf("Could not open file.\n");
         return 1;
     }
 
-    FILE *output = fopen(argv[2], "w");
+    FILE *output = fopen(argv[2], "w"); //"w" olması yazmak için açtık demek. write modunda açınca üzerinde bilgi varsa silinecek, bilgi yoksa yeni dosya açılacak demek
     if (output == NULL)
     {
         printf("Could not open file.\n");
@@ -42,8 +42,8 @@ int main(int argc, char *argv[])
     uint8_t header[HEADER_SIZE]; // we create an uint called header
     fread(header, HEADER_SIZE, 1, input);
     // header = This is the pointer to a block of memory with a minimum size of size*nmemb bytes
-    // HEADER_SIZE = This is the size in bytes of each element to be read. Constant int equal to 44
-    // 1 = This is the number of elements, each one with a size of size bytes.
+    // HEADER_SIZE = This is the size in bytes of each element to be read. Constant int equal to 44 KAÇ KARAKTER OKUNACAK
+    // 1 = This is the number of elements, each one with a size of size bytes. KAÇ KERE OKUNACAK
     // input = This is the pointer to a FILE object that specifies an input stream.
 
     fwrite(header, HEADER_SIZE, 1, output);
@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
         buffer *= factor; //line 36, it is one of our arguments in int main.
         fwrite(&buffer, sizeof(int16_t), 1, output);
     }
-    // Close files
+    // Close files unless we specify fclose, we cant be sure the changes are written
     fclose(input);
     fclose(output);
 }
