@@ -101,7 +101,7 @@ int main(int argc, char *argv[]) // argc number of arguments, argv values of arg
         fseek(inptr, padding, SEEK_CUR);
     }
 
-    // Filter image
+    // Filter image these are the code I should write
     switch (filter)
     {
         // Blur
